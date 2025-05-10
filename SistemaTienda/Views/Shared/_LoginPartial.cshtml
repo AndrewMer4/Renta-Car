@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using SistemaTienda.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" method="post" class="form-inline">
+            <a class="nav-link" href="javascript:;" onclick="document.getElementById('logoutForm').submit();">Cerrar sesión</a>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Iniciar sesión</a>
+    </li>
+}

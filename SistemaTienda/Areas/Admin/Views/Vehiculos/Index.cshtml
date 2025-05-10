@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Lista de Vehículos";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+    .font-title {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 1px;
+    }
+
+    .zoom-img-container img {
+        max-height: 100vh;
+        transition: transform 0.3s ease;
+    }
+
+        .zoom-img-container img:hover {
+            transform: scale(1.05);
+        }
+
+    .img-thumbnail {
+        cursor: zoom-in;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row align-items-center justify-content-between mb-4">
+        <div class="col-md-6">
+            <h1 class="display-3 fw-bolder text-black font-title mb-0">Lista de Vehículos</h1>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-action="Create" class="btn btn-dark text-white px-4 py-2 shadow">
+                <i class="fas fa-plus me-2"></i> Nuevo Vehículo
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive shadow-sm">
+        <table id="tblVehiculos" class="table table-bordered table-striped align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>ID</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>Kilometraje</th>
+                    <th>Estado</th>
+                    <th>Precio por Día</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<!-- Modal para imagen ampliada -->
+<div class="modal fade" id="modalImagen" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-dark border-0">
+            <div class="modal-body text-center p-0">
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <div class="zoom-img-container p-3">
+                    <img id="imagenAmpliada" src="" class="img-fluid rounded-3 shadow" />
+                    <div class="text-center mt-3 mb-3">
+                        <a id="btnVerImagen" href="#" target="_blank" class="btn btn-outline-light me-2">
+                            <i class="fas fa-external-link-alt"></i> Ver en nueva pestaña
+                        </a>
+                        <a id="btnDescargarImagen" href="#" download class="btn btn-outline-light">
+                            <i class="fas fa-download"></i> Descargar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Admin/vehiculo.js"></script>
+}

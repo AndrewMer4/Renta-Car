@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Panel del Empleado";
+}
+
+<!-- Fuente cartel para títulos -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+    .font-title {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 1px;
+    }
+
+    .welcome-card {
+        background-color: #ffffff;
+        border-radius: 1rem;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.06);
+        padding: 3rem;
+        text-align: center;
+    }
+
+    .welcome-title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.25rem;
+        color: #444;
+        margin-top: 1rem;
+    }
+
+    .divider {
+        height: 4px;
+        width: 100px;
+        margin: 1rem auto;
+        background: #000;
+        border-radius: 2px;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="welcome-card">
+        <h1 class="welcome-title font-title">Bienvenido, Empleado</h1>
+        <div class="divider"></div>
+        <p class="welcome-subtitle">
+            Desde esta área puedes registrar <strong>rentas</strong>, <strong>pagos</strong> y consultar la información disponible.<br />
+            Usa el menú lateral para acceder a tus herramientas de trabajo.
+        </p>
+    </div>
+</div>

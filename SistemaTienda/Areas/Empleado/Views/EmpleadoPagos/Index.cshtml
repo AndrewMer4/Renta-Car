@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Lista de Pagos";
+}
+
+<!-- Fuente estilo cartel -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+    .font-title {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 1px;
+    }
+</style>
+
+<div class="container mt-5">
+
+    <!-- Título y botón -->
+    <div class="row align-items-center justify-content-between mb-4">
+        <div class="col-md-6">
+            <h1 class="display-3 fw-bolder text-black font-title mb-0">
+                Lista de Pagos
+            </h1>
+        </div>
+        <div class="col-md-6 text-end">
+            <a class="btn btn-dark text-white px-4 py-2 shadow" asp-action="Create">
+                <i class="fas fa-plus me-2"></i> Nuevo Pago
+            </a>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="p-4 border rounded shadow-sm bg-white">
+        <table id="tblPagos" class="table table-bordered table-striped align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Vehículo</th>
+                    <th>Monto</th>
+                    <th>Fecha Pago</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Empleado/pago.js"></script>
+}

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-SistemaTienda-9ccb46ee-646a-4fd0-afff-a7bc3ebff8bc</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+	 <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11" />
+	 <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+	 <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
+	   <PrivateAssets>all</PrivateAssets>
+	   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	 </PackageReference>
+	 <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaTienda.AccesoDatos\SistemaTienda.AccesoDatos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
+    <Folder Include="wwwroot\imagenes\productos\" />
+  </ItemGroup>
+
+</Project>

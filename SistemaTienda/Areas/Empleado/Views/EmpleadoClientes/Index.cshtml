@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Clientes";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+<style>
+    .font-title {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 1px;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>
+
+<div class="container mt-5">
+    <!-- Título + botón crear -->
+    <div class="row align-items-center justify-content-between mb-4">
+        <div class="col-md-6">
+            <h1 class="display-3 fw-bolder text-black font-title mb-0">Lista de Clientes</h1>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-area="Empleado" asp-controller="EmpleadoClientes" asp-action="Create"
+               class="btn btn-dark px-4 py-2 shadow text-white">
+                <i class="fas fa-plus me-2"></i> Nuevo Cliente
+            </a>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-responsive shadow-sm mx-auto" style="max-width: 1200px;">
+        <table id="tblClientes"
+               class="table table-bordered table-striped align-middle"
+               data-area="Empleado"
+               data-controller="EmpleadoClientes"
+               data-url="@Url.Action("GetAll", "EmpleadoClientes", new { area = "Empleado" })">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DUI</th>
+                    <th>Teléfono</th>
+                    <th>Edad</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Empleado/clientes.js"></script>
+}

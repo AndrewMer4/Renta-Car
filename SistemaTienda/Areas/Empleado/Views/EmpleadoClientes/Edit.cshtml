@@ -1,0 +1,99 @@
+﻿@model SistemaTienda.Models.Clientes
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+<style>
+    .font-title {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 1px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-control {
+        border-radius: 0.5rem;
+        border: 1px solid #ccc;
+    }
+
+    .btn-dark {
+        border-radius: 0.3rem;
+        padding: 10px 25px;
+        font-weight: 500;
+    }
+
+    .btn-secondary {
+        padding: 10px 20px;
+    }
+
+    .form-container {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="text-center display-4 font-title text-black mb-4">Editar Cliente</h1>
+
+    <form method="post" asp-action="Edit">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-container mx-auto" style="max-width: 700px;">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Nombres" class="form-label"></label>
+                <input asp-for="Nombres" class="form-control" />
+                <span asp-validation-for="Nombres" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Apellidos" class="form-label"></label>
+                <input asp-for="Apellidos" class="form-control" />
+                <span asp-validation-for="Apellidos" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Edad" class="form-label"></label>
+                <input asp-for="Edad" type="number" min="0" class="form-control" />
+                <span asp-validation-for="Edad" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DUI" class="form-label"></label>
+                <input asp-for="DUI" class="form-control" />
+                <span asp-validation-for="DUI" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Telefono" class="form-label"></label>
+                <input asp-for="Telefono" class="form-control" pattern="[0-9]{8}" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Direccion" class="form-label"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i> Volver
+                </a>
+                <button type="submit" class="btn btn-dark">
+                    <i class="fas fa-save me-2"></i> Guardar Cambios
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

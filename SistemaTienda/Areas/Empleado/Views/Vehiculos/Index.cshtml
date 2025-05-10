@@ -1,0 +1,143 @@
+﻿@model IEnumerable<SistemaTienda.Models.Vehiculo>
+
+@{
+    ViewData["Title"] = "Flota de Vehículos";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+
+    .font-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #1a1a1a;
+        letter-spacing: 2px;
+    }
+
+    .filtro-container {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .vehiculo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .vehiculo-card {
+        background: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease;
+    }
+
+        .vehiculo-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+    .vehiculo-img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .vehiculo-info {
+        font-size: 1rem;
+        color: #333;
+        line-height: 1.6;
+    }
+
+        .vehiculo-info strong {
+            color: #111;
+        }
+
+    .precio {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #000;
+        margin-top: 0.5rem;
+    }
+
+    select {
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 1px solid #aaa;
+        background: #fff;
+        font-weight: 500;
+        color: #333;
+        outline: none;
+    }
+
+</style>
+
+<div class="container mt-4">
+    <h1 class="font-title">Flota</h1>
+
+    <!-- Filtro por estado -->
+    <div class="filtro-container">
+        <label for="estadoSelect"><strong>Filtrar por estado:</strong></label>
+        <select id="estadoSelect" onchange="filtrarVehiculos()">
+            <option value="Disponible" selected>Disponible</option>
+            <option value="Rentado">Rentado</option>
+            <option value="En Mantenimiento">En Mantenimiento</option>
+            <option value="Todos">Todos</option>
+        </select>
+    </div>
+
+    <div class="vehiculo-grid" id="vehiculoContainer">
+        @foreach (var v in Model)
+        {
+            <div class="vehiculo-card" data-estado="@v.Estado">
+                <img class="vehiculo-img" src="@v.UrlImagen" alt="@v.Marca @v.Modelo" />
+                <div class="vehiculo-info">
+                    <p><strong>Marca:</strong> @v.Marca</p>
+                    <p><strong>Modelo:</strong> @v.Modelo</p>
+                    <p><strong>Año:</strong> @v.Anio</p>
+                    <p><strong>Kilometraje:</strong> @v.Kilometraje.ToString("N0") km</p>
+                    <p><strong>Estado:</strong> @v.Estado</p>
+                    <p class="precio"><strong>Precio por Día:</strong> @v.PrecioPorDia.ToString("C")</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function filtrarVehiculos() {
+            var estadoSeleccionado = document.getElementById("estadoSelect").value;
+            var tarjetas = document.querySelectorAll('.vehiculo-card');
+
+            tarjetas.forEach(function (card) {
+                var estado = card.getAttribute('data-estado');
+
+                if (estadoSeleccionado === "Todos" || estado === estadoSeleccionado) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Ejecutar el filtro al cargar
+        window.addEventListener('DOMContentLoaded', () => {
+            filtrarVehiculos();
+        });
+    </script>
+}

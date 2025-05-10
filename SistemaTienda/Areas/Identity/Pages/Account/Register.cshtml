@@ -1,0 +1,153 @@
+﻿@page
+@using SistemaTienda.Utilidades
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Registrarse";
+}
+
+<style>
+    body {
+        background-color: #f0f0f0;
+    }
+
+    .register-container {
+        background: linear-gradient(145deg,#fff,#e6e6e6);
+        border-radius: 50px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        padding: 40px;
+        max-width: 500px;
+        margin: 50px auto;
+        color: #333;
+    }
+
+    .register-title {
+        font-size: 2rem;
+        text-align: center;
+        color: #222;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .logo-image {
+        display: block;
+        margin: 0 auto 30px;
+        max-height: 120px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        background: #f9f9f9;
+        padding: 12px;
+    }
+
+    .btn-primary {
+        background: #000;
+        border: none;
+        border-radius: 10px;
+        padding: 12px;
+        font-weight: bold;
+        width: 100%;
+        transition: background .3s;
+    }
+
+        .btn-primary:hover {
+            background: #333;
+        }
+
+    .radio-group {
+        margin: 20px 0;
+    }
+
+        .radio-group h4 {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .radio-group label {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+    .links-container {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+        .links-container a {
+            color: #555;
+            transition: color .3s;
+        }
+
+            .links-container a:hover {
+                color: #000;
+                text-decoration: underline;
+            }
+</style>
+
+<div class="register-container">
+    <h1 class="register-title">@ViewData["Title"]</h1>
+    <img src="@Url.Content("~/imagenes/Logo1.PNG")" alt="Logo" class="logo-image" />
+
+    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Input.Nombre">Nombre</label>
+            <input asp-for="Input.Nombre" class="form-control" placeholder="Nombre" />
+            <span asp-validation-for="Input.Nombre" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Input.Apellido">Apellido</label>
+            <input asp-for="Input.Apellido" class="form-control" placeholder="Apellido" />
+            <span asp-validation-for="Input.Apellido" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Input.Email">Correo</label>
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="correo@ejemplo.com" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Input.Password">Contraseña</label>
+            <input asp-for="Input.Password" type="password" class="form-control" placeholder="Contraseña" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Input.ConfirmPassword">Confirmar contraseña</label>
+            <input asp-for="Input.ConfirmPassword" type="password" class="form-control" placeholder="Confirmar contraseña" />
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        </div>
+
+        <div class="radio-group">
+            <h4>Seleccionar Rol de Usuario</h4>
+            <label>
+                <input asp-for="Input.Role" type="radio" value="@CNT.Admin" /> @CNT.Admin
+            </label>
+            <label>
+                <input asp-for="Input.Role" type="radio" value="@CNT.Empleado" /> @CNT.Empleado
+            </label>
+            <span asp-validation-for="Input.Role" class="text-danger d-block"></span>
+        </div>
+
+        <button id="registerSubmit" type="submit" class="btn btn-primary">Registrarse</button>
+
+        <div class="links-container">
+            ¿Ya tienes una cuenta? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Inicia sesión</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/register.js"></script>
+}

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SistemaTienda.Models.ViewModels.UserVM>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Usuarios Registrados";
+}
+
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+    <style>
+        .font-title {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+    </style>
+}
+
+<!-- Título y botón -->
+<div class="row align-items-center justify-content-between mb-4">
+    <div class="col-md-6">
+        <h1 class="display-3 fw-bolder text-black font-title mb-0">
+            Lista de Pagos
+        </h1>
+    </div>
+    <div class="col-md-6 text-end">
+        <a class="btn btn-dark text-white px-4 py-2 shadow" asp-area="Identity"
+           asp-page="/Account/Register"
+           asp-route-returnUrl="@Url.Action("Index", "Registro", new { area = "Admin" })">
+            Registrar Usuario
+        </a>
+    </div>
+</div>
+
+
+    <div class="table-responsive shadow-sm">
+        <table id="tblRegistro" class="table table-bordered table-striped align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Admin/registro.js"></script>
+}

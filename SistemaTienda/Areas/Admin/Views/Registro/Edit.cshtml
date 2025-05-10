@@ -1,0 +1,110 @@
+﻿@model SistemaTienda.Models.ViewModels.UserVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Editar Usuario";
+}
+
+<!-- Fuente Bebas Neue -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+<style>
+    .font-title {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 1px;
+    }
+
+    .form-container {
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 2rem;
+        max-width: 800px;
+        margin: auto;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-control {
+        border-radius: 0.5rem;
+    }
+
+    .btn-dark {
+        font-weight: 500;
+        padding: 10px 25px;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="text-center display-4 font-title text-black mb-4">Editar Usuario</h1>
+
+    <form asp-area="Admin"
+          asp-controller="Registro"
+          asp-action="Edit"
+          method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-container">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <!-- Nombre -->
+            <div class="mb-3">
+                <label asp-for="Nombre" class="form-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <!-- Apellido -->
+            <div class="mb-3">
+                <label asp-for="Apellido" class="form-label"></label>
+                <input asp-for="Apellido" class="form-control" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+
+            <!-- Correo -->
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- Rol -->
+            <div class="mb-3">
+                <label asp-for="Role" class="form-label"></label><br />
+                @foreach (var rol in Model.Roles)
+                {
+                    <div class="form-check form-check-inline">
+                        <input asp-for="Role"
+                               class="form-check-input"
+                               type="radio"
+                               value="@rol.Value"
+                               id="rol_@rol.Value" />
+                        <label class="form-check-label form-label" for="rol_@rol.Value">
+                            @rol.Text
+                        </label>
+                    </div>
+                }
+                <span asp-validation-for="Role" class="text-danger d-block"></span>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-between">
+                <a asp-area="Admin"
+                   asp-controller="Registro"
+                   asp-action="Index"
+                   class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i> Volver
+                </a>
+                <button type="submit" class="btn btn-dark">
+                    <i class="fas fa-save me-2"></i> Guardar Cambios
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
